@@ -26,7 +26,20 @@ export class EditarProductoComponent {
   }
 
   onSubmit() {
-    
+    this.guardarProducto();
+  }
+
+  guardarProducto() {
+    this.productoServicio.editarProducto(this.id, this.producto).subscribe(
+      {
+        next: (datos) => this.irProductosLista(),
+        error: (errores) => console.log(errores)
+      }
+    );
+  }
+
+  irProductosLista() {
+    this.enrutador.navigate(['/productos']);
   }
 
 }
